@@ -299,7 +299,7 @@ export const INFRA_DATA = {
 /* ── initial state ───────────────────────────────────── */
 const initialState = {
   /* Navigation */
-  activeTab: "agile",
+  activeTab: "home",
 
   /* Agile */
   sprint: {

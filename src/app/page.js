@@ -6,14 +6,16 @@ import AgileBoard from "@/components/AgileBoard";
 import CodeEditor from "@/components/CodeEditor";
 import CICDPipeline from "@/components/CICDPipeline";
 import Infrastructure from "@/components/Infrastructure";
+import HomePage from "@/components/HomePage";
 import Notifications from "@/components/Notifications";
 import TutorialModal from "@/components/TutorialModal";
 
 const TABS = [
-  { id: "agile", label: "Agile Board", desc: "Sprint planning & task management" },
-  { id: "code", label: "Code & VCS", desc: "Editor, branches & pull requests" },
-  { id: "cicd", label: "CI/CD Pipeline", desc: "Build, test & deploy" },
-  { id: "infra", label: "Infrastructure", desc: "Environments & resources" },
+  { id: "home", label: "Home" },
+  { id: "agile", label: "Agile Board" },
+  { id: "code", label: "Code & VCS" },
+  { id: "cicd", label: "CI/CD Pipeline" },
+  { id: "infra", label: "Infrastructure" },
 ];
 
 function ThemeToggle() {
@@ -63,6 +65,7 @@ function AppShell() {
   const inProgressTasks = state.columns.inProgress.length + state.columns.inReview.length;
 
   const badges = {
+    home: null,
     agile: inProgressTasks > 0 ? inProgressTasks : null,
     code: activePRs > 0 ? activePRs : null,
     cicd: activePipelines > 0 ? activePipelines : null,
@@ -123,6 +126,7 @@ function AppShell() {
 
       {/* Content */}
       <main className="flex-1 overflow-hidden">
+        {state.activeTab === "home" && <HomePage />}
         {state.activeTab === "agile" && <AgileBoard />}
         {state.activeTab === "code" && <CodeEditor />}
         {state.activeTab === "cicd" && <CICDPipeline />}
